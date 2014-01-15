@@ -57,6 +57,7 @@ type Header struct {
 	Devminor   int64     // minor number of character or block device
 	AccessTime time.Time // access time
 	ChangeTime time.Time // status change time
+	Xattrs     map[string]string
 }
 
 // File name constants from the tar spec.
@@ -177,19 +178,20 @@ const (
 
 // Keywords for the PAX Extended Header
 const (
-	paxAtime    = "atime"
-	paxCharset  = "charset"
-	paxComment  = "comment"
-	paxCtime    = "ctime" // please note that ctime is not a valid pax header.
-	paxGid      = "gid"
-	paxGname    = "gname"
-	paxLinkpath = "linkpath"
-	paxMtime    = "mtime"
-	paxPath     = "path"
-	paxSize     = "size"
-	paxUid      = "uid"
-	paxUname    = "uname"
-	paxNone     = ""
+	paxAtime       = "atime"
+	paxCharset     = "charset"
+	paxComment     = "comment"
+	paxCtime       = "ctime" // please note that ctime is not a valid pax header.
+	paxGid         = "gid"
+	paxGname       = "gname"
+	paxLinkpath    = "linkpath"
+	paxMtime       = "mtime"
+	paxPath        = "path"
+	paxSize        = "size"
+	paxUid         = "uid"
+	paxUname       = "uname"
+	paxSchilyXattr = "SCHILY.xattr."
+	paxNone        = ""
 )
 
 // FileInfoHeader creates a partially-populated Header from fi.
